@@ -19,7 +19,12 @@ THERE ARE MORE THEN ONE BRANCHES.
 progress so far:
 
 [x] api call to static endpoint
+
 [x] button with submit action on it
+
 [x] input field 1 and 2
+
 [x] component for representation
+
 [ ] algorithm for api comparison
+
