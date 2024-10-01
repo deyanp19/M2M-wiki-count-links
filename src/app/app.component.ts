@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DataService } from './data.service';
 
 @Component({
   selector: 'app-root',
@@ -12,8 +13,23 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 })
 export class AppComponent {
   title = 'M2M-Wiki-count-links';
+  first = '';
 
-  constructor(private modalService: NgbModule){}
+  constructor(private modalService: NgbModule, private dataService: DataService){}
+
+  ngOnInit() {
+    this.dataService.getList().subscribe({
+      next: (data) => {
+          this.first = data;
+      },
+      error: (error) => {
+          console.log(error)
+      },
+      complete: () => {
+          console.log('complete')
+      }
+    })      
+  }
   onSubmit(){
     console.log('submitting');
     
@@ -23,3 +39,4 @@ export class AppComponent {
   }
 
 }
+

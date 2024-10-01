@@ -5,42 +5,26 @@
     <div class="col-md-12 " style="text-align: center; margin-bottom: 4%;">
       <div class="row mb-4"><a href="https://www.m2mservices.com"><img src="../app/assets/m2m_logo.jpg"/></a></div>
       <div class="mt-4">
-      <form (ngSubmit)="onSubmit()">
+          <form (ngSubmit)="onSubmit()">
 
-          <div class="row">
-            <span class="sub-heading">Website URL</span>
-          </div>
-          <div class="row">
-            <input type="text" class="form-control col-lg-3">
-          </div>
-           <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-        </div>
-        </div>
-        <div ngbAccordion>
-          <div ngbAccordionItem>
-            <h2 ngbAccordionHeader>
-              <button ngbAccordionButton>First</button>
-            </h2>
-            <div ngbAccordionCollapse>
-              <div ngbAccordionBody>
-                <ng-template>Content for the first item</ng-template>
+              <div class="row">
+                <span class="sub-heading">Compare</span>
               </div>
-            </div>
-          </div>
-        </div>
-        <div class="jumbotron">
-          <div class="container">
-            <ngb-alert type="success" [dismissible]="false">
-              Bootstrap is working!
-            </ngb-alert>
-        
-            <h1>
-              <i class="fa fa-bath" aria-hidden="true"></i>
-              And so is Font Awesome!
-            </h1>
-          </div>
-        </div>
+              <div class="row">
+                <input type="text" class="form-control col-lg-3">
+              </div>
+              <div class="row">
+                <span class="sub-heading">To</span>
+              </div>
+              <div class="row">
+                <input type="text" class="form-control col-lg-3">
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+      </div>
+      </div>
+      
+      
         
       
         
