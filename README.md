@@ -4,10 +4,10 @@
 
 <img src="./public/UI-presentation.jpg"
      alt="First page"
-     style="float: left; margin-right: 10px;" height="175px" width="175px" />
+     style="float: left; margin-right: 10px;" height="275px" width="275px" />
 <img src="./public/api_response.jpg"
      alt="First page"
-     style="float: left; margin-right: 10px;" height="175px" width="175px" />
+     style="float: left; margin-right: 10px;" height="275px" width="275px" />
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.6.
 
 ## Development server
