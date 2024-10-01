@@ -1,1 +1,41 @@
-/* You can add global styles to this file, and also import other style files */
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+/*@import '~bootstrap/dist/css/bootstrap.min.css';*/
+
+@font-face {
+  font-family: Stolzl-Regular;
+  src: url('assets/fonts/Stolzl-Regular.ttf');
+}
+@font-face {
+  font-family: Roboto-Bold;
+  src: url('assets/fonts/Roboto-Bold.ttf');
+}
+@font-face {
+  font-family: Roboto-Regular;
+  src: url('assets/fonts/Roboto-Regular.ttf');
+}
+@font-face {
+  font-family: Stolzl-Medium;
+  src: url('assets/fonts/Stolzl-Medium.ttf');
+}
+@font-face {
+  font-family: Stolzl-Bold;
+  src: url('assets/fonts/Stolzl-Bold.ttf');
+}
+@font-face {
+  font-family: Stolzl-Book;
+  src: url('assets/fonts/Stolzl-Book.ttf');
+}
+@font-face {
+  font-family: Stolzl-Thin;
+  src: url('assets/fonts/Stolzl-Thin.ttf');
+}
+@font-face {
+  font-family: Stolzl-Light;
+  src: url('assets/fonts/Stolzl-Light.ttf');
+}
+.app_font {
+  font-family: "Montserrat", sans-serif;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
