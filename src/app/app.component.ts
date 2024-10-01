@@ -14,11 +14,16 @@ import { DataService } from './data.service';
 export class AppComponent {
   title = 'M2M-Wiki-count-links';
   first = '';
-
-  constructor(private modalService: NgbModule, private dataService: DataService){}
-
+  
+  constructor(private modalService: NgbModule, private dataService: DataService)
+      {
+        
+        console.log(this.dataService.getData());
+      }
+  
   ngOnInit() {
-    this.dataService.getList().subscribe({
+    console.log('ng on init')
+    this.dataService.getData().subscribe({
       next: (data) => {
           this.first = data;
       },
@@ -26,7 +31,7 @@ export class AppComponent {
           console.log(error)
       },
       complete: () => {
-          console.log('complete')
+          console.log('complete', this.first)
       }
     })      
   }
@@ -34,9 +39,9 @@ export class AppComponent {
     console.log('submitting');
     
   }
-  public open(modal: any): void {
-    this.modalService;
-  }
+  // public open(modal: any): void {
+  //   this.modalService;
+  // }
 
 }
 

@@ -33,7 +33,9 @@
     font-weight: 600;
 }
  
-
+.custom-btn {
+  margin-right: 58px;
+}
   @media screen and (max-width: 650px) {
     .content {
       flex-direction: column;
