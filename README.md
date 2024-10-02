@@ -4,7 +4,7 @@
 
 <img src="./public/results_from_wikipedia.png"
      alt="First page"
-     style="float: left; margin-right: 10px;" height="275px" width="475px" />
+     style="float: left; margin-right: 10px;" height="325px" width="475px" />
 <img src="./public/UI-presentation.jpg"
      alt="First page"
      style="float: left; margin-right: 10px;" height="275px" width="275px" />
