@@ -30,29 +30,51 @@ export class AppComponent {
   
   ngOnInit() {
     console.log('ng on init')
-    this.dataService.getData().subscribe(
-            (data) => {
-        console.log(data);
-        
-          this.first = data;
-      },
-      (error) => {
-          console.log(error)
-      },
-       () => {
-          console.log('complete', this.first)
-      }
-    )    ;
+    
   
   }
+
+  getDataCompareAction(){
+    this.dataService.getData().subscribe(
+      (data) => {
+  console.log(data);
+    this.first = data;
+    },
+    (error) => {
+        console.log(error)
+    },
+    () => {
+        console.log('complete', this.first)
+    });
+  }  
+
+  getDataToComparableAction(){
+    this.dataService.getData().subscribe(
+      (data) => {
+  console.log(data);
+    this.first = data;
+    },
+    (error) => {
+        console.log(error)
+    },
+    () => {
+        console.log('complete', this.first)
+    });
+  }
   onSubmit(){
-    console.log('submitting');
+    console.log('submitting' ,this.wiki_form.value.compare, this.wiki_form.value.to_comparable);
+    
+    //conditions for filling in the field compare and to_comparable
+    //can have a debounce for sending request each 300 ms
+    // can have dropdown with suggestions
+
+    //logic of the problem -> first input have to finish in order the socond to execute .  This means to implement concatMap();
+
+    //send action with the first request 
+
 
     
   }
-  // public open(modal: any): void {
-  //   this.modalService;
-  // }
 
 }
 
