@@ -6,18 +6,18 @@
 
       <div class="row mb-7"><a href="https://www.m2mservices.com"><img src="assets/m2m_logo.jpg" alt="logo"/></a></div>
       <div class="mt-4">
-          <form (ngSubmit)="onSubmit()">
+          <form [formGroup]="wiki_form" (ngSubmit)="onSubmit()">
             <div class="row mb-3  ">
               <label class="col-auto sub-heading">Compare</label>
-              <div class="col-lg-5">
-                <input type="text" class="form-control">
+              <div class="col-5">
+                <input type="text" class="form-control"   formControlName="compare">
               </div>
             </div>
           
             <div class="row mb-3 ">
               <label class="col-lg-1 ml-4 sub-heading">To </label>
               <div class="col-5  ">
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" formControlName="to_comparable">
               </div>
             </div>
 
