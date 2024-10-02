@@ -2,6 +2,9 @@
 
 ![Plan](./public/work_on_Friday.png?raw=true "Working Plan")
 
+<img src="./public/results_from_wikipedia.png"
+     alt="First page"
+     style="float: left; margin-right: 10px;" height="275px" width="475px" />
 <img src="./public/UI-presentation.jpg"
      alt="First page"
      style="float: left; margin-right: 10px;" height="275px" width="275px" />
