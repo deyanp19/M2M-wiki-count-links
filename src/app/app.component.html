@@ -24,7 +24,18 @@
             <button type="submit" class="btn btn-primary custom-btn">Submit</button>
           </form>
       </div>
-
+      <div class="row mt-5">
+        <div class="compare col p-4" >Compare {{name_of_actor1.length}}
+          <hr/>
+          <div  *ngFor="let actor1 of name_of_actor1"> <li >{{actor1}}</li></div>
+        </div>
+        <div class="to_comparable col p-4"> To: {{name_of_actor1.length}}
+          <hr/>
+          <div *ngFor="let actor2 of name_of_actor2">
+            <li>{{name_of_actor2}}</li>
+          </div> 
+        </div>
+      </div>
     </div>    
   </div>
 </main>

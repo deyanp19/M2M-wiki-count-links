@@ -4,10 +4,13 @@ import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DataService } from './data.service';
 import { FormControl, FormGroup,FormBuilder } from '@angular/forms';
+import { concatMap, Observable } from 'rxjs';
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,FormsModule, NgbModule,ReactiveFormsModule],
+  imports: [RouterOutlet,FormsModule, NgbModule,ReactiveFormsModule,CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -16,12 +19,19 @@ export class AppComponent {
   first = '';
   wiki_form:FormGroup;
   dataService;
+  // private searchTerm:string;
+  flag_no_error:boolean;
+  flag_error:boolean;
+  name_of_actor1:any;
+  name_of_actor2:any;
   
   constructor(private modalService: NgbModule,  dataService: DataService,private fb:FormBuilder)
       {
+        this.flag_error=false;
+        this.flag_no_error=false;
+        // this.searchTerm='';
         this.dataService = dataService;
         // this.wiki_form=new this.FormGroup;
-        console.log(this.dataService.getData());
            this.wiki_form = new FormGroup({
       compare:new FormControl(''),
       to_comparable:new FormControl('',Validators.minLength(2))
@@ -29,18 +39,22 @@ export class AppComponent {
       }
   
   ngOnInit() {
-    console.log('ng on init')
-    
-  
+    console.log('ngOnInit eg. component created ')
   }
 
-  getDataCompareAction(){
-    this.dataService.getData().subscribe(
+  getDataCompareAction(searchTerm:string) {
+    this.dataService.getData(searchTerm).subscribe(
       (data) => {
-  console.log(data);
-    this.first = data;
+      this.flag_no_error=true;
+      this.name_of_actor1 = data[1];
+      console.log(this.flag_no_error);
+
+      //if not "concatMap" is used -> doing call of the second request and logic for comparing from the first result
+      this.getDataToComparableAction(this.wiki_form.value.to_comparable, data);
+
     },
     (error) => {
+      this.flag_error=true;
         console.log(error)
     },
     () => {
@@ -48,19 +62,26 @@ export class AppComponent {
     });
   }  
 
-  getDataToComparableAction(){
-    this.dataService.getData().subscribe(
+  getDataToComparableAction(searchTerm:string, data_from_compare:any){
+    this.dataService.getData(searchTerm).subscribe(
       (data) => {
-  console.log(data);
-    this.first = data;
+      this.flag_no_error=true;
+      console.log(this.flag_no_error);
+      this.name_of_actor2 = data[1];
+      data_from_compare;
     },
     (error) => {
+      this.flag_error=true;
         console.log(error)
     },
     () => {
         console.log('complete', this.first)
     });
   }
+  
+
+  
+
   onSubmit(){
     console.log('submitting' ,this.wiki_form.value.compare, this.wiki_form.value.to_comparable);
     
@@ -71,8 +92,19 @@ export class AppComponent {
     //logic of the problem -> first input have to finish in order the socond to execute .  This means to implement concatMap();
 
     //send action with the first request 
+    this.getDataCompareAction(this.wiki_form.value.compare);
 
 
+    console.log(this.flag_no_error)
+
+    // if (this.flag_no_error) {
+
+
+    // } else {
+    //   alert('No results')
+    // }
+    
+    
     
   }
 

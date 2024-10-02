@@ -35,6 +35,16 @@
  
 .custom-btn {
   margin-right: 58px;
+  
+}
+
+.compare , .to_comparable {
+  border: 1px solid bisque;
+  border-radius: 6px;
+  
+}
+li {
+  list-style-type: none;
 }
   @media screen and (max-width: 650px) {
     .content {
