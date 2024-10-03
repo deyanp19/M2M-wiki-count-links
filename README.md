@@ -33,10 +33,12 @@ progress so far:
 
 ALGORITHM PHASE: NOT DONE
 
-###ALGORITHM APROACH
+### ALGORITHM APROACH
 
 > 
 - use the api link *https://en.wikipedia.org/w/api.php?action=opensearch&format=json&gsrnamespace=0&gsrlimit=5&search=%27${searchTerm}%27&origin=**
 - it returns an array the fourth member of the arry have links in this format *https://en.wikipedia.org/wiki/Kevin_Rudd* so at the end there could be the search term's page
 -  go 2-3 levels down this page *https://en.wikipedia.org/wiki/Kevin_Rudd"* if Kevin_Rudd is not the answer and check the results of the comming array for our search term. This should be recursively done.
 - put limit of the search requiests 2-3 levels deep in the recursion. 
+
+### end
