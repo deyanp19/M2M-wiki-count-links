@@ -52,18 +52,18 @@ export class AppComponent {
       this.name_of_actor1 = data[1];
       console.log(this.flag_no_error);
 
-      //if not "concatMap" is used -> doing call of the second request and logic for comparing from the first result
-      this.getDataToComparableAction(this.wiki_form.value.to_comparable, data);
+      //!!!ALERT%%%%%%%%%%%%%% if not "concatMap"(RXJS) is used -> doing call of the second request and logic for comparing from the first result
 
-    },
-    (error) => {
-      this.flag_error=true;
-        console.log(error)
-        alert(`Coudnt find results===${error.message}`);
-    },
-    () => {
-        console.log('complete', )
-    });
+      this.getDataToComparableAction(this.wiki_form.value.to_comparable, data);
+      },
+      (error) => {
+        this.flag_error=true;
+          console.log(error)
+          alert(`Coudnt find results===${error.message}`);
+      },
+      () => {
+          console.log('complete getting data from first search term', )
+      });
   }  
 
   getDataToComparableAction(searchTerm:string, data_from_compare:any){
@@ -78,10 +78,9 @@ export class AppComponent {
       this.flag_error=true;
         console.log(error)
         alert(`Coudnt find results===Message:${error.message}`);
-
     },
     () => {
-        console.log('complete', )
+        console.log('complete getting data from second search term', )
     });
   }
 
