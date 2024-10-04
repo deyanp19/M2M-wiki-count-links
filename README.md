@@ -42,4 +42,15 @@ ALGORITHM PHASE: NOT DONE
 -  go 2-3 levels down this page *https://en.wikipedia.org/wiki/Kevin_Rudd"* if Kevin_Rudd is not the answer and check the results of the comming array for our search term. This should be recursively done.
 - put limit of the search requiests 2-3 levels deep in the recursion. 
 
+
+
+
 ### end
+
+#### Regarding input values
+- in the task the input value should be a webpage from wikipedia. 
+>
+##### Assumptions added
+- to extract a searchable part from the link it is assumed the page in the search bar(input named *Compare* and *To*) is in the format provided in the task  *en.wikipedia.org/wiki/Kyra_Sedgwick* 
+- e.g. the last subdirectory after wiki
+- the inputs will be parsed in order to be sent to the api listed in algorithm aproach search term
