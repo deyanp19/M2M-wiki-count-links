@@ -6,27 +6,30 @@ import { DataService } from './data.service';
 import { FormControl, FormGroup,FormBuilder } from '@angular/forms';
 import { concatMap, Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { InputComponent } from "./input/input.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,FormsModule, NgbModule,ReactiveFormsModule,CommonModule],
+  imports: [RouterOutlet, FormsModule, NgbModule, ReactiveFormsModule, CommonModule, InputComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'M2M-Wiki-count-links';
-  first = '';
+
   wiki_form:FormGroup;
   dataService;
   // private searchTerm:string;
   flag_no_error:boolean;
   flag_error:boolean;
-  name_of_actor1:any;
+  name_of_actor1:String[];
   name_of_actor2:any;
   
   constructor(private modalService: NgbModule,  dataService: DataService,private fb:FormBuilder)
       {
+        this.name_of_actor1=[""];
+        this.name_of_actor2=[];
         this.flag_error=false;
         this.flag_no_error=false;
         // this.searchTerm='';
@@ -56,9 +59,10 @@ export class AppComponent {
     (error) => {
       this.flag_error=true;
         console.log(error)
+        alert(`Coudnt find results===${error.message}`);
     },
     () => {
-        console.log('complete', this.first)
+        console.log('complete', )
     });
   }  
 
@@ -73,9 +77,11 @@ export class AppComponent {
     (error) => {
       this.flag_error=true;
         console.log(error)
+        alert(`Coudnt find results===Message:${error.message}`);
+
     },
     () => {
-        console.log('complete', this.first)
+        console.log('complete', )
     });
   }
   
