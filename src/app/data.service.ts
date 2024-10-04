@@ -22,8 +22,8 @@ export class DataService {
   
   getData(searchTerm:string): Observable<any>{
     console.log({headers: this.httpHeaders});
-    console.log('the search term encoded:', this.parseUrl(searchTerm));
-    console.log('the URI encoded:', this.parseUrl(`https://en.wikipedia.org/w/api.php?action=opensearch&format=json&gsrnamespace=0&gsrlimit=5&search=%27${this.parseUrl(searchTerm)}%27&origin=*`));
+    console.log('%c the search term encoded:',"color:orange;font-size:18px", this.parseUrl(searchTerm));
+    console.log('%c the URI encoded:',"color:green;font-size:16px", this.parseUrl(`https://en.wikipedia.org/w/api.php?action=opensearch&format=json&gsrnamespace=0&gsrlimit=5&search=%27${this.parseUrl(searchTerm)}%27&origin=*`));
 
     
     

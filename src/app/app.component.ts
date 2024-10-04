@@ -50,11 +50,11 @@ export class AppComponent {
       (data) => {
       this.flag_no_error=true;
       this.name_of_actor1 = data[1];
-      console.log(this.flag_no_error);
 
       //!!!ALERT%%%%%%%%%%%%%% if not "concatMap"(RXJS) is used -> doing call of the second request and logic for comparing from the first result
-
-      this.getDataToComparableAction(this.wiki_form.value.to_comparable, data);
+      const searchTerm = this.extractSearchTerm(this.wiki_form.value.to_comparable) != "not propper weblink" ? this. extractSearchTerm(this.wiki_form.value.to_comparable)[1] : "not propper weblink";
+      
+      this.getDataToComparableAction(searchTerm, data);
       },
       (error) => {
         this.flag_error=true;
@@ -84,8 +84,21 @@ export class AppComponent {
     });
   }
 
+  extractSearchTerm(url:string){
+      
+    const expression = /wiki\/(.*)/;
+    const stringEvaluation   =  url.match(expression); //this is the search term extracted 
+
+    const result = stringEvaluation ==null? "not propper weblink":stringEvaluation;
+
+    return result;
+  }
+
   onSubmit(){
-    console.log('submitting' ,this.wiki_form.value.compare, this.wiki_form.value.to_comparable);
+    console.log('%c submitting', 'color:purple; font-size:16px;font-weight:900;' ,this.wiki_form.value.compare, this.wiki_form.value.to_comparable);
+
+    const searchTerm = this.extractSearchTerm(this.wiki_form.value.compare) != "not propper weblink" ? this. extractSearchTerm(this.wiki_form.value.compare)[1] : "not propper weblink";
+    console.log(searchTerm);
     
     //conditions for filling in the field compare and to_comparable
     //can have a debounce for sending request each 300 ms
@@ -94,10 +107,15 @@ export class AppComponent {
     //logic of the problem -> first input have to finish in order the socond to execute .  This means to implement concatMap();
 
     //send action with the first request 
-    this.getDataCompareAction(this.wiki_form.value.compare);
+    if (searchTerm != "not propper weblink") {
+      this.getDataCompareAction(searchTerm);
+      
+    } else {
+      alert( searchTerm+"."+"\nExample:  en.wikipedia.org/wiki/search_term.");
+    }
 
 
-    console.log(this.flag_no_error)
+    // console.log(this.flag_no_error)
 
     // if (this.flag_no_error) {
 
