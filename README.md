@@ -1,7 +1,7 @@
 # M2MWikiCountLinks
 
 ![Plan](./public/work_on_Friday.png?raw=true "Working Plan")
-![Plan](./public/algorithm.png?raw=true "Working Plan")
+![Plan](./public/algorithm.png?raw=true "algorithm")
 
 <img src="./public/results_from_wikipedia.png"
      alt="First page"
