@@ -84,9 +84,6 @@ export class AppComponent {
         console.log('complete', )
     });
   }
-  
-
-  
 
   onSubmit(){
     console.log('submitting' ,this.wiki_form.value.compare, this.wiki_form.value.to_comparable);
