@@ -94,11 +94,37 @@ export class AppComponent {
     return result;
   }
 
+  getHtmlPageRespons(searchTerm:string) {
+    this.dataService.getHtmlForScrubing(searchTerm).subscribe(
+      (data) => {
+      this.flag_no_error=true;
+      const searchTerm = this.extractSearchTerm(this.wiki_form.value.to_comparable) != "not propper weblink" ? this. extractSearchTerm(this.wiki_form.value.to_comparable)[1] : "not propper weblink";
+
+      console.log(data);
+      
+       
+      },
+      (error) => {
+        this.flag_error=true;
+          console.log(error)
+          alert(`Coudnt find results===${error.message}`);
+      },
+      () => {
+          console.log('complete getting data from inner link search term', )
+      });
+  }
+
+  searchHTMLForReferences() {
+
+  }
+
   onSubmit(){
     console.log('%c submitting', 'color:purple; font-size:16px;font-weight:900;' ,this.wiki_form.value.compare, this.wiki_form.value.to_comparable);
 
     const searchTerm = this.extractSearchTerm(this.wiki_form.value.compare) != "not propper weblink" ? this. extractSearchTerm(this.wiki_form.value.compare)[1] : "not propper weblink";
     console.log(searchTerm);
+
+    this.getHtmlPageRespons(searchTerm);
     
     //conditions for filling in the field compare and to_comparable
     //can have a debounce for sending request each 300 ms

@@ -11,9 +11,14 @@ import { Observable } from 'rxjs';
 export class DataService {
   
   protected httpHeaders: HttpHeaders;
+  protected httpHeadersParse: HttpHeaders;
 
   constructor(private http: HttpClient) {
     this.httpHeaders = new HttpHeaders;
+    this.httpHeadersParse = new HttpHeaders({
+      'Referer':'https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&rvsection=0&titles=Kevin%20Bacon',
+      // 'Content-Type':'text/plain'
+    });
   }
     
   parseUrl(searchString:string){
@@ -30,7 +35,13 @@ export class DataService {
      return this.http.get<any>(
       `https://en.wikipedia.org/w/api.php?action=opensearch&format=json&gsrnamespace=0&gsrlimit=5&search=%27${this.parseUrl(searchTerm)}%27&origin=*`
       // 'http://swapi.dev/api/people'
-      ,{headers:this.httpHeaders});
+      ,{headers: this.httpHeaders });
+  }
+
+  getHtmlForScrubing(search_term:string) {
+    return this.http.get(
+      `https://en.wikipedia.org/w/api.php?action=query&prop=revisions&&origin=*&rvprop=content&rvsection=0&titles=%27Kevin%20Bacon%27`,
+      {headers: this.httpHeadersParse}
+    )
   }
 }
- 
