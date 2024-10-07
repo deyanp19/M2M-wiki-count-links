@@ -32,5 +32,13 @@ export class DataService {
       // 'http://swapi.dev/api/people'
       ,{headers:this.httpHeaders});
   }
+
+  getListOfLinksHTML(url:string):Observable<any>{
+    console.log(this.httpHeaders)
+    return this.http.get<any>(
+      url,
+      {headers:this.httpHeaders}  
+    )
+  }
 }
  

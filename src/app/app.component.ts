@@ -7,6 +7,7 @@ import { FormControl, FormGroup,FormBuilder } from '@angular/forms';
 import { concatMap, Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { InputComponent } from "./input/input.component";
+ 
 
 @Component({
   selector: 'app-root',
@@ -43,6 +44,8 @@ export class AppComponent {
   
   ngOnInit() {
     console.log('ngOnInit eg. component created ')
+ 
+    
   }
 
   getDataCompareAction(searchTerm:string) {
@@ -59,7 +62,7 @@ export class AppComponent {
       (error) => {
         this.flag_error=true;
           console.log(error)
-          alert(`Coudnt find results===${error.message}`);
+          alert(`Couldnt find results===${error.message}`);
       },
       () => {
           console.log('complete getting data from first search term', )
@@ -77,7 +80,7 @@ export class AppComponent {
     (error) => {
       this.flag_error=true;
         console.log(error)
-        alert(`Coudnt find results===Message:${error.message}`);
+        alert(`Couldnt find results===Message:${error.message}`);
     },
     () => {
         console.log('complete getting data from second search term', )
@@ -113,8 +116,15 @@ export class AppComponent {
     } else {
       alert( searchTerm+"."+"\nExample:  en.wikipedia.org/wiki/search_term.");
     }
-
-
+ 
+    this.dataService.getListOfLinksHTML("https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&titles=Kevin_Bacon&origin=*").subscribe(
+      (res)=>console.log(res),
+      (err)=>console.log(err),
+      ()=>console.log('complete')
+      
+      
+      
+    );
     // console.log(this.flag_no_error)
 
     // if (this.flag_no_error) {
