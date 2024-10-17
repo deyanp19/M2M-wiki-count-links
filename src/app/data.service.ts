@@ -38,10 +38,17 @@ export class DataService {
       ,{headers: this.httpHeaders });
   }
 
+  // getHtmlForScrubing(search_term:string) {
+  //   return this.http.get(
+  //     `https://en.wikipedia.org/w/api.php?action=parse&prop=revisions&&origin=*&rvprop=content&rvsection=0&titles=%27Kevin%20Bacon%27`,
+  //     {headers: this.httpHeadersParse}
+  //   )
+  // }
+
   getHtmlForScrubing(search_term:string) {
     return this.http.get(
-      `https://en.wikipedia.org/w/api.php?action=query&prop=revisions&&origin=*&rvprop=content&rvsection=0&titles=%27Kevin%20Bacon%27`,
-      {headers: this.httpHeadersParse}
+      `https://en.wikipedia.org/w/index.php?origin=*&title=Kevin_Bacon&action=raw`,
+      // {headers: this.httpHeadersParse}
     )
   }
 }
