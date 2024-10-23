@@ -1,5 +1,8 @@
 # M2MWikiCountLinks
 
+the app is online at:
+http://devman.fun/v3/
+
 ![Plan](./public/work_on_Friday.png?raw=true "Working Plan")
 <img src="./public/work_on_Friday.png"
      alt="First page"
