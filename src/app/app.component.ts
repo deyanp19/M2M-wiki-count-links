@@ -6,27 +6,31 @@ import { DataService } from './data.service';
 import { FormControl, FormGroup,FormBuilder } from '@angular/forms';
 import { concatMap, Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { InputComponent } from "./input/input.component";
+ 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,FormsModule, NgbModule,ReactiveFormsModule,CommonModule],
+  imports: [RouterOutlet, FormsModule, NgbModule, ReactiveFormsModule, CommonModule, InputComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'M2M-Wiki-count-links';
-  first = '';
+
   wiki_form:FormGroup;
   dataService;
   // private searchTerm:string;
   flag_no_error:boolean;
   flag_error:boolean;
-  name_of_actor1:any;
+  name_of_actor1:String[];
   name_of_actor2:any;
   
   constructor(private modalService: NgbModule,  dataService: DataService,private fb:FormBuilder)
       {
+        this.name_of_actor1=[""];
+        this.name_of_actor2=[];
         this.flag_error=false;
         this.flag_no_error=false;
         // this.searchTerm='';
@@ -40,6 +44,8 @@ export class AppComponent {
   
   ngOnInit() {
     console.log('ngOnInit eg. component created ')
+ 
+    
   }
 
   getDataCompareAction(searchTerm:string) {
@@ -47,19 +53,20 @@ export class AppComponent {
       (data) => {
       this.flag_no_error=true;
       this.name_of_actor1 = data[1];
-      console.log(this.flag_no_error);
 
-      //if not "concatMap" is used -> doing call of the second request and logic for comparing from the first result
-      this.getDataToComparableAction(this.wiki_form.value.to_comparable, data);
-
-    },
-    (error) => {
-      this.flag_error=true;
-        console.log(error)
-    },
-    () => {
-        console.log('complete', this.first)
-    });
+      //!!!ALERT%%%%%%%%%%%%%% if not "concatMap"(RXJS) is used -> doing call of the second request and logic for comparing from the first result
+      const searchTerm = this.extractSearchTerm(this.wiki_form.value.to_comparable) != "not propper weblink" ? this. extractSearchTerm(this.wiki_form.value.to_comparable)[1] : "not propper weblink";
+      
+      this.getDataToComparableAction(searchTerm, data);
+      },
+      (error) => {
+        this.flag_error=true;
+          console.log(error)
+          alert(`Couldnt find results===${error.message}`);
+      },
+      () => {
+          console.log('complete getting data from first search term', )
+      });
   }  
 
   getDataToComparableAction(searchTerm:string, data_from_compare:any){
@@ -73,17 +80,28 @@ export class AppComponent {
     (error) => {
       this.flag_error=true;
         console.log(error)
+        alert(`Couldnt find results===Message:${error.message}`);
     },
     () => {
-        console.log('complete', this.first)
+        console.log('complete getting data from second search term', )
     });
   }
-  
 
-  
+  extractSearchTerm(url:string){
+      
+    const expression = /wiki\/(.*)/;
+    const stringEvaluation   =  url.match(expression); //this is the search term extracted 
+
+    const result = stringEvaluation ==null? "not propper weblink":stringEvaluation;
+
+    return result;
+  }
 
   onSubmit(){
-    console.log('submitting' ,this.wiki_form.value.compare, this.wiki_form.value.to_comparable);
+    console.log('%c submitting', 'color:purple; font-size:16px;font-weight:900;' ,this.wiki_form.value.compare, this.wiki_form.value.to_comparable);
+
+    const searchTerm = this.extractSearchTerm(this.wiki_form.value.compare) != "not propper weblink" ? this. extractSearchTerm(this.wiki_form.value.compare)[1] : "not propper weblink";
+    console.log(searchTerm);
     
     //conditions for filling in the field compare and to_comparable
     //can have a debounce for sending request each 300 ms
@@ -92,10 +110,22 @@ export class AppComponent {
     //logic of the problem -> first input have to finish in order the socond to execute .  This means to implement concatMap();
 
     //send action with the first request 
-    this.getDataCompareAction(this.wiki_form.value.compare);
-
-
-    console.log(this.flag_no_error)
+    if (searchTerm != "not propper weblink") {
+      this.getDataCompareAction(searchTerm);
+      
+    } else {
+      alert( searchTerm+"."+"\nExample:  en.wikipedia.org/wiki/search_term.");
+    }
+ 
+    this.dataService.getListOfLinksHTML("https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&titles=Kevin_Bacon&origin=*").subscribe(
+      (res)=>console.log(res),
+      (err)=>console.log(err),
+      ()=>console.log('complete')
+      
+      
+      
+    );
+    // console.log(this.flag_no_error)
 
     // if (this.flag_no_error) {
 

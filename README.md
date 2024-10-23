@@ -1,7 +1,14 @@
 # M2MWikiCountLinks
 
-![Plan](./public/algorithm.png?raw=true "Algorithm plan");
-![Plan](./public/work_on_Friday.png?raw=true "Working Plan");
+
+the app is online at:
+http://devman.fun/v3/
+
+![Plan](./public/work_on_Friday.png?raw=true "Working Plan")
+<img src="./public/work_on_Friday.png"
+     alt="First page"
+     style="float: left; margin-right: 10px;" height="362px" width="175px" />
+
 
 <img src="./public/results_from_wikipedia.png"
      alt="First page"

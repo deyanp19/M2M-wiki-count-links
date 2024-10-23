@@ -25,14 +25,15 @@
           </form>
       </div>
       <div class="row mt-5">
+        <!-- <app-input name="name_of_actor1"></app-input> -->
         <div class="compare col p-4" >Compare {{name_of_actor1.length}}
           <hr/>
           <div  *ngFor="let actor1 of name_of_actor1"> <li >{{actor1}}</li></div>
         </div>
-        <div class="to_comparable col p-4"> To: {{name_of_actor1.length}}
+        <div class="to_comparable col p-4"> To: {{name_of_actor2.length}}
           <hr/>
           <div *ngFor="let actor2 of name_of_actor2">
-            <li>{{name_of_actor2}}</li>
+            <li>{{actor2}}</li>
           </div> 
         </div>
       </div>
